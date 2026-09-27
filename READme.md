@@ -18,6 +18,7 @@ language for these things I chose this instead of some generic to-do lists or ra
 
 
 **ADVANCED**
+| Features | Done? |
 |---|---|
 | Redirection & pipes | nah |
 | Job Control | nah |
@@ -28,10 +29,14 @@ language for these things I chose this instead of some generic to-do lists or ra
 
 # Clone repo
 **HTTPS**
-[link]
-git clone (https://github.com/Narppp/c-unix-shell.git)
+'''bash
+git clone https://github.com/Narppp/c-unix-shell.git
+'''
+
 **SSH**
+'''bash
 git clone git@github.com:Narppp/c-unix-shell.git
+'''
 
 # Make Commands
 **Type "make help" for help commands**
