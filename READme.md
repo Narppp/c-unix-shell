@@ -29,17 +29,19 @@ language for these things I chose this instead of some generic to-do lists or ra
 
 # Clone repo
 **HTTPS**
-'''bash
+```bash
 git clone https://github.com/Narppp/c-unix-shell.git
-'''
+```
 
 **SSH**
-'''bash
+```bash
 git clone git@github.com:Narppp/c-unix-shell.git
-'''
+```
 
 # Make Commands
 **Type "make help" for help commands**
+```bash
 make help 
+```
 
 i lab c
