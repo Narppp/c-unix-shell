@@ -12,4 +12,7 @@
 
 #define BUF_SIZE 64
 
+// parser.c
+char **parse_line(char *charline);
+
 #endif
