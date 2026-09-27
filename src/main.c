@@ -1,20 +1,30 @@
 // Main File
 
-#include <stdio.h>
+#include "shell.h"
 
 int main(int argc, char **argv){
-  char buffer[128];
+  char *line = NULL;
+  size_t buffer_size = 0;
+  ssize_t chars_read = 0;
 
   while(1){
-    printf("nerp-shell> ");
+    printf("<ushell> ");
+    fflush(stdout);
 
-    if(fgets(buffer, sizeof(buffer), stdin) == NULL){
-      printf("Process ended.\n");
-      break;
+    chars_read = getline(&line, &buffer_size, stdin);
+
+    if(chars_read == -1){
+      fprintf(stderr, "Force Exiting Shell: %s\n", strerror(errno));
+      exit(0);
     }
 
-    printf("Output: %s", buffer);
+    if(strcmp(line, "out") == 0){
+      printf("Out\n");
+      exit(0);
+    }
   }
+  free(line);
+  line = NULL;
 
   return 0;
 }
