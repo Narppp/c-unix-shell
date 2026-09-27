@@ -1,4 +1,5 @@
 # Project 1: Unix Shell in C
+# GO TO sub-main BRANCH TO RUN PROPERLY (BUGGY)
 
 Welcome! This is my own build of a Unix Shell in C, utilizing system calls and idk I can't explain properly
 
