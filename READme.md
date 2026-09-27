@@ -9,13 +9,16 @@ language for these things I chose this instead of some generic to-do lists or ra
 ## Project TODO List
 **BASICS**
 | Features | Done? |
+|---|---|
 | Looping cmd | ye |
 | String parser | ye |
 | Multiple processes | nah |
 | Calling commands | nah |
 | UI | nah |
 
+
 **ADVANCED**
+|---|---|
 | Redirection & pipes | nah |
 | Job Control | nah |
 
@@ -23,10 +26,10 @@ language for these things I chose this instead of some generic to-do lists or ra
 - I hate double pointers
 - Memory leaks/corruption are frequent with poor input handling
 
-'''bash
 # Clone repo
 **HTTPS**
-git clone https://github.com/Narppp/c-unix-shell.git
+[link]
+git clone (https://github.com/Narppp/c-unix-shell.git)
 **SSH**
 git clone git@github.com:Narppp/c-unix-shell.git
 
