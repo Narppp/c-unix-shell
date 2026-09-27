@@ -68,5 +68,6 @@ help:
 	@echo "make clean - Deletes all files for proper restart"
 	@echo "make sanitize - Checks ASan for mem leak"
 	@echo "make debug - Runs gdb for debugging"
+	@echo "make valgrind - Runs valgrind for easier bug traces"
 
 .PHONY: all clean run help sanitize debug
