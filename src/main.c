@@ -1,6 +1,5 @@
 // Main File
 
-#include "parser.h"
 #include "shell.h"
 
 int main(void){
@@ -27,6 +26,7 @@ int main(void){
       break;
     }
 
+    free(words);
   }
   free(line);
   line = NULL;
