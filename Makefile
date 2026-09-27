@@ -31,6 +31,10 @@ sanitize: $(DEBUG_PROJ)
 	@echo "Running sanitized version..."
 	@./$(DEBUG_PROJ)
 
+valgrind: $(DEBUG_PROJ)
+	@echo "Running valgrind version..."
+	@valgrind ./$(DEBUG_PROJ)
+
 $(DEBUG_PROJ): $(DEBUG_OBJS) | $(DEBUG_DIR)
 	@$(CC) $(CFLAGS) $(DEBUG_OBJS) $(DEBUG) -o $(DEBUG_PROJ)
 	@echo "Done! you can now run the sanitized version."
