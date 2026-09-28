@@ -16,7 +16,6 @@ char **parse_line(char *charline){
   while(token != NULL){
     // LOOP UNTIL NO MORE TOKENS
     tokens[line_pos] = token;
-    printf("Token %d: %s\n", line_pos, tokens[line_pos]);
 
     if(line_pos >= (buffer_size / 4)){
       buffer_size += BUF_SIZE;
