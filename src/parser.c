@@ -5,6 +5,7 @@ char **parse_line(char *charline){
   int buffer_size = BUF_SIZE;
   int line_pos = 0;
   char **tokens = malloc(buffer_size * sizeof(int));
+
   if(!tokens){
     fprintf(stderr, "Malloc failed: %s\n", strerror(errno));
     exit(EXIT_FAILURE);
@@ -13,8 +14,10 @@ char **parse_line(char *charline){
   char *token = NULL;
 
   token = strtok(charline, " \t\n");
+
   while(token != NULL){
     // LOOP UNTIL NO MORE TOKENS
+
     tokens[line_pos] = token;
 
     if(line_pos >= (buffer_size / 4)){

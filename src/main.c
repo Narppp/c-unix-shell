@@ -24,6 +24,11 @@ int main(void){
 
     char **words = parse_line(line); 
 
+    // check if input is whitespace
+    if(words == NULL || words[0] == NULL){
+      continue;
+    }
+
     if(strcmp(words[0], "out") == 0){
       printf("Exited shell successfully.\n");
       exit(0);
