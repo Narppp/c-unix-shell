@@ -12,8 +12,8 @@ language for these things I chose this instead of some generic to-do lists or ra
 |---|---|
 | Looping cmd | ye |
 | String parser | ye |
-| Multiple processes | nah |
-| Calling commands | nah |
+| Multiple processes | ye |
+| Calling commands | ye |
 | UI | nah |
 
 
