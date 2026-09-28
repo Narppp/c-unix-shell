@@ -3,7 +3,7 @@
 #include "shell.h"
 
 void exec_commands(char **tokens){
-  if(tokens == NULL && tokens[0] == NULL){
+  if(tokens == NULL || tokens[0] == NULL){
     // if user inputs nothing, go back
     return;
   }
