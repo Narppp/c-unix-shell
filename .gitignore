@@ -1,2 +1,5 @@
 build/
+debug_build/
 obj/
+obj/release
+obj/debug
