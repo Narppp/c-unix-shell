@@ -9,10 +9,14 @@
 #include <unistd.h>
 
 #include <sys/types.h>
+#include <sys/wait.h>
 
 #define BUF_SIZE 64
 
 // parser.c
 char **parse_line(char *charline);
+
+// processes.c
+void exec_commands(char **tokens);
 
 #endif

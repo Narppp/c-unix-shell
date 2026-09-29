@@ -31,9 +31,9 @@ sanitize: $(DEBUG_PROJ)
 	@echo "Running sanitized version..."
 	@./$(DEBUG_PROJ)
 
-valgrind: $(DEBUG_PROJ)
+valgrind: $(PROJ_NAME)
 	@echo "Running valgrind version..."
-	@valgrind ./$(DEBUG_PROJ)
+	@valgrind --leak-check=full --show-leak-kinds=all ./$(PROJ_NAME)
 
 $(DEBUG_PROJ): $(DEBUG_OBJS) | $(DEBUG_DIR)
 	@$(CC) $(CFLAGS) $(DEBUG_OBJS) $(DEBUG) -o $(DEBUG_PROJ)

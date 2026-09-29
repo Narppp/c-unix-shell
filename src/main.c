@@ -14,17 +14,34 @@ int main(void){
     chars_read = getline(&line, &buffer_size, stdin);
 
     if(chars_read == 1 /* empty input */){
+      free(line);
+      line = NULL;
+      buffer_size = 0;
       continue;
     }
 
     if(chars_read == -1 /* EOF Error */){
+      free(line);
       fprintf(stderr, "Force Exiting Shell: %s\n", strerror(errno));
       exit(0);
     }
 
     char **words = parse_line(line); 
 
+    // check if input is whitespace
+    if(words == NULL || words[0] == NULL){
+      free(words);
+      free(line);
+      line = NULL;
+      buffer_size = 0;
+      continue;
+    }
+
     if(strcmp(words[0], "out") == 0){
+      free(words);
+      free(line);
+      line = NULL;
+      buffer_size = 0;
       printf("Exited shell successfully.\n");
       exit(0);
     }
@@ -34,6 +51,7 @@ int main(void){
   }
   free(line);
   line = NULL;
+  buffer_size = 0;
 
   return 0;
 }
