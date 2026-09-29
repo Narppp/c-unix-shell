@@ -7,3 +7,6 @@
 4. (main.c) pressing enter crashes program (SIGSEGV) **PATCHED**
 5. (main.c) crash bug when just entering spaces on input **PATCHED**
 6. (parser.c) mem leak after whitespace spam **PATCHED**
+
+# v0.20
+1. (main/parse_line.c) persistent reachable memory on the heap caused by improper freeing

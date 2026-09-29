@@ -17,7 +17,7 @@ void exec_commands(char **tokens){
 
   if(id == 0 /* child process */){
     if(execvp(tokens[0], tokens) < 0){
-      perror("Command failed");
+      perror("nerp-shell");
       exit(EXIT_FAILURE);
     }
     exit(EXIT_FAILURE);

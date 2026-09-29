@@ -3,12 +3,17 @@
 #include "shell.h"
 
 int main(void){
+  char cwd[CWD] = {0};
   char *line = NULL;
   size_t buffer_size = 0;
   ssize_t chars_read = 0;
 
   while(1){
-    printf("<nerp-shell> ");
+    if(getcwd(cwd, sizeof(cwd)) == NULL){
+      fprintf(stderr, "Directory Error: %s\n", strerror(errno));
+      printf("<nerp-shell [%s]> ", cwd);
+    }
+    printf("<nerp-shell [%s]> ", cwd);
     fflush(stdout);
 
     chars_read = getline(&line, &buffer_size, stdin);
@@ -37,17 +42,19 @@ int main(void){
       continue;
     }
 
-    if(strcmp(words[0], "out") == 0){
+    if(exec_builtin(words)){
       free(words);
       free(line);
       line = NULL;
       buffer_size = 0;
-      printf("Exited shell successfully.\n");
-      exit(0);
+      continue;
     }
 
     exec_commands(words);
     free(words);
+    free(line);
+    line = NULL;
+    buffer_size = 0;
   }
   free(line);
   line = NULL;

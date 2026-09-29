@@ -4,6 +4,7 @@
 
 #include <errno.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -12,11 +13,15 @@
 #include <sys/wait.h>
 
 #define BUF_SIZE 64
+#define CWD 1024
 
 // parser.c
 char **parse_line(char *charline);
 
 // processes.c
 void exec_commands(char **tokens);
+
+// commands.c
+bool exec_builtin(char **tokens);
 
 #endif
