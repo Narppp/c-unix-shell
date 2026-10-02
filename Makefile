@@ -70,4 +70,4 @@ help:
 	@echo "make debug - Runs gdb for debugging"
 	@echo "make valgrind - Runs valgrind for easier bug traces"
 
-.PHONY: all clean run help sanitize debug
+.PHONY: all clean run help sanitize debug valgrind
