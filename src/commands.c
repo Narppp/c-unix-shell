@@ -11,7 +11,8 @@ bool exec_builtin(char **tokens){
   else if(strcmp(tokens[0], "help") == 0 && tokens[1] == NULL){
     printf("\nCustom Commands:\n\n");
     printf("out - exit the shell\n");
-    printf("jmp - change directories\n\n");
+    printf("jmp - change directories\n");
+    printf("intro - show shell banner\n\n");
     return true;
   }
   else if(strcmp(tokens[0], "jmp") == 0){
@@ -28,6 +29,10 @@ bool exec_builtin(char **tokens){
       fprintf(stderr, "Directory Error: %s\n", strerror(errno));
       return true;
     }
+    return true;
+  }
+  else if(strcmp(tokens[0], "intro") == 0 && tokens[1] == NULL){
+    print_shell_intro();
     return true;
   }
 
