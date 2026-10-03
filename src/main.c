@@ -2,18 +2,25 @@
 
 #include "shell.h"
 
+void print_shell_intro(void){
+  puts(" /\\_/\\\n"
+     "( o.o )  nerpsh 0.21\n"
+     " > ^ <   type 'help' for commands\n");
+}
+
 int main(void){
   char cwd[CWD] = {0};
   char *line = NULL;
   size_t buffer_size = 0;
   ssize_t chars_read = 0;
 
+  print_shell_intro();
   while(1){
     if(getcwd(cwd, sizeof(cwd)) == NULL){
       fprintf(stderr, "Directory Error: %s\n", strerror(errno));
-      printf("<nerp-shell [%s]> ", cwd);
+      printf("<nerpsh [%s]> ", cwd);
     }
-    printf("<nerp-shell [%s]> ", cwd);
+    printf("<nerpsh [%s]> ", cwd);
     fflush(stdout);
 
     chars_read = getline(&line, &buffer_size, stdin);

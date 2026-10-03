@@ -21,6 +21,7 @@ all: $(PROJ_NAME)
 
 run: $(PROJ_NAME)
 	@echo "Running program..."
+	@clear
 	@./$(PROJ_NAME)
 
 debug: $(DEBUG_PROJ)

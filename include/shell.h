@@ -15,6 +15,9 @@
 #define BUF_SIZE 64
 #define CWD 1024
 
+// main.c
+void print_shell_intro(void);
+
 // parser.c
 char **parse_line(char *charline);
 
