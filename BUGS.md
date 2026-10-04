@@ -9,7 +9,8 @@
 6. (parser.c) mem leak after whitespace spam **PATCHED**
 
 # v0.20
-1. (main/parse_line.c) persistent reachable memory on the heap caused by improper freeing
+1. (main/parser.c) persistent reachable memory on the heap caused by improper freeing
 
 # v0.21
-1. (parse_line.c) INSANE memory leak, annoying asf
+1. (parser.c) INSANE memory leaks everywhere, annoying asf
+2. (parser.c) newline not removed when using quotation marks
