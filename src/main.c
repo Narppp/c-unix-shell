@@ -2,12 +2,6 @@
 
 #include "shell.h"
 
-void print_shell_intro(void){
-  puts(" /\\_/\\\n"
-     "( o.o )  nerpsh 0.21\n"
-     " > ^ <   type 'help' for commands\n");
-}
-
 int main(void){
   char cwd[CWD] = {0};
   char *line = NULL;
@@ -42,25 +36,19 @@ int main(void){
 
     // check if input is whitespace
     if(words == NULL || words[0] == NULL){
-      free(words);
-      free(line);
-      line = NULL;
+      free_all(line, words);
       buffer_size = 0;
       continue;
     }
 
     if(exec_builtin(words)){
-      free(words);
-      free(line);
-      line = NULL;
+      free_all(line, words);
       buffer_size = 0;
       continue;
     }
 
     exec_commands(words);
-    free(words);
-    free(line);
-    line = NULL;
+    free_all(line, words);
     buffer_size = 0;
   }
   free(line);
