@@ -1,4 +1,4 @@
-# Project 1: Unix Shell in C
+# Project 1: Unix Shell in C (UNSTABLE VERSION, GO TO MAIN BRANCH)
 
 Welcome! This is my own build of a Unix Shell in C, utilizing system calls and idk I can't explain properly
 
@@ -14,7 +14,7 @@ language for these things I chose this instead of some generic to-do lists or ra
 | String parser | ye |
 | Multiple processes | ye |
 | Calling commands | ye |
-| UI | nah |
+| UI | ye |
 
 
 **ADVANCED**
@@ -26,6 +26,7 @@ language for these things I chose this instead of some generic to-do lists or ra
 ### What I learned (so far)
 - I hate double pointers
 - Memory leaks/corruption are frequent with poor input handling
+- lexers are everything
 
 # Clone repo
 **HTTPS**
