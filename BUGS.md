@@ -10,3 +10,6 @@
 
 # v0.20
 1. (main/parse_line.c) persistent reachable memory on the heap caused by improper freeing
+
+# v0.21
+1. (parse_line.c) INSANE memory leak, annoying asf
