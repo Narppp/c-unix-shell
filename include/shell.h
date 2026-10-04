@@ -19,7 +19,7 @@
 void print_shell_intro(void);
 
 // parser.c
-char **parse_line(char *charline);
+char **parse_line(char *string);
 
 // processes.c
 void exec_commands(char **tokens);

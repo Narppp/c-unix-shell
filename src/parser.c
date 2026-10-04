@@ -1,40 +1,119 @@
 
 #include "shell.h"
 
-char **parse_line(char *charline){
-  int buffer_size = BUF_SIZE;
-  int line_pos = 0;
+char **parse_line(char *string){
+  int token_count = 0;
+  int storage_size = BUF_SIZE;
+  char *user_input = string;
+  char **token_holder = malloc(storage_size * sizeof(char*));
 
-  char **tokens = malloc(buffer_size * sizeof(char *));
-  if(!tokens){
-    fprintf(stderr, "Malloc failed: %s\n", strerror(errno));
-    exit(EXIT_FAILURE);
+  if(token_holder == NULL){
+    fprintf(stderr, "Memory Allocation Failed: %s\n", strerror(errno));
+    exit(1);
   }
 
-  char *token = NULL;
+  // Looping with pointer arithmetic instead of strtok for better flexibility
+  while(*user_input != '\0'){
 
-  token = strtok(charline, " \t\n");
-
-  while(token != NULL){
-    // LOOP UNTIL NO MORE TOKENS
-
-    tokens[line_pos] = token;
-
-    if(line_pos >= (buffer_size / 4)){
-      buffer_size += BUF_SIZE;
-      char **temp = realloc(tokens, buffer_size * sizeof(char *));
-
-      if(!temp){
-        fprintf(stderr, "Realloc failed: %s\n", strerror(errno));
-        exit(EXIT_FAILURE);
-      }
-      tokens = temp;
+    while(*user_input == ' ' || *user_input == '\n'){
+      user_input++;
+    }
+    if(*user_input == '\0'){
+      break;
     }
 
-    token = strtok(NULL, " \t\n");
-    line_pos++;
-  }
-  tokens[line_pos] = NULL;
+    int token_size = BUF_SIZE;
+    int token_idx = 0;
 
-  return tokens;
+    // allocate memory for EACH token
+    char *token = malloc(token_size);
+
+    if(token == NULL){
+      fprintf(stderr, "Token Memory Allocation Failed: %s\n", strerror(errno));
+      exit(1);
+    }
+
+    char is_quote = '\0';
+
+    while(*user_input != '\0'){
+      if(is_quote == '\0'){
+        if(*user_input == ' ' || *user_input == '\n' || *user_input == '\t'){
+          // This is when we are OUTSIDE the quotes, end the loop here.
+          user_input++;
+          break;
+        }
+        else if(*user_input == '"' || *user_input == '\''){
+          // We got a quotation mark, set this to a null terminator to mask it
+          is_quote = *user_input;
+          user_input++;
+
+          // Loops until there's a null terminator AND it finds a closing quotation mark
+          while(*user_input != '\0' && *user_input != is_quote){
+
+            // Reallocate new memory if the tokens inside the quotation mark is really big
+            if(token_idx + 1 >= token_size){
+              token_size *= 2;
+              char *temp_size = realloc(token, token_size);
+
+              if(temp_size == NULL){
+                fprintf(stderr, "Token Reallocation inside quotation failed: %s\n", strerror(errno));
+                exit(1);
+              }
+              
+              token = temp_size;
+            }
+
+            token[token_idx++] = *user_input;
+            user_input++;
+          }
+
+          if(*user_input == '\0'){
+            fprintf(stderr, "Found unfinished quotation mark: %s\n", strerror(errno));
+            free(token);
+            free(token_holder);
+            return NULL;
+          }
+
+          user_input++;
+          continue;
+        }
+      }
+
+      if(token_idx + 1 >= token_size){
+        token_size *= 2;
+        char *temp_storage = realloc(token, token_size);
+
+        if(temp_storage == NULL){
+          fprintf(stderr, "Token Reallocation Failed: %s\n", strerror(errno));
+          exit(1);
+        }
+
+        token = temp_storage;
+      }
+
+      token[token_idx++] = *user_input;
+      user_input++;
+    }
+
+    token[token_idx] = '\0';
+
+    if(token_count + 1 >= storage_size){
+      storage_size *= 2;
+      char **temp_holder = realloc(token_holder, storage_size * sizeof(char*));
+
+      if(temp_holder == NULL){
+        fprintf(stderr, "Token Array Reallocation Failed: %s\n", strerror(errno));
+        exit(1);
+      }
+
+      token_holder = temp_holder;
+    }
+
+    token_holder[token_count] = token;
+    printf("token: %s\n", token_holder[token_count]);
+    token_count++;
+  }
+
+  token_holder[token_count] = NULL;
+  return token_holder;
 }
