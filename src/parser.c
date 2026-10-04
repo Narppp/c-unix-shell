@@ -42,10 +42,21 @@ char **parse_line(char *string){
           user_input++;
           break;
         }
-        if(*user_input == '"' || *user_input == '\''){
+        else if(*user_input == '"' || *user_input == '\''){
           // We got a quotation mark, set this to a null terminator to mask it
           *user_input = '\0';
           user_input++;
+
+          while(*user_input != '"' || *user_input != '\''){
+            if(*user_input == '"' || *user_input == '\''){
+              *user_input = '\0';
+              user_input++;
+              break;
+            }
+
+            token[token_idx++] = *user_input;
+            user_input++;
+          }
           continue;
         }
       }
