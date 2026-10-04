@@ -44,27 +44,39 @@ char **parse_line(char *string){
         }
         else if(*user_input == '"' || *user_input == '\''){
           // We got a quotation mark, set this to a null terminator to mask it
-          *user_input = '\0';
+          is_quote = *user_input;
           user_input++;
 
-          while(*user_input != '"' || *user_input != '\''){
-            if(*user_input == '"' || *user_input == '\''){
-              *user_input = '\0';
-              user_input++;
-              break;
+          // Loops until there's a null terminator AND it finds a closing quotation mark
+          while(*user_input != '\0' && *user_input != is_quote){
+
+            // Reallocate new memory if the tokens inside the quotation mark is really big
+            if(token_idx + 1 >= token_size){
+              token_size *= 2;
+              char *temp_size = realloc(token, token_size);
+
+              if(temp_size == NULL){
+                fprintf(stderr, "Token Reallocation inside quotation failed: %s\n", strerror(errno));
+                exit(1);
+              }
+              
+              token = temp_size;
             }
 
             token[token_idx++] = *user_input;
             user_input++;
           }
+
+          if(*user_input == '\0'){
+            fprintf(stderr, "Found unfinished quotation mark: %s\n", strerror(errno));
+            free(token);
+            free(token_holder);
+            return NULL;
+          }
+
+          user_input++;
           continue;
         }
-      }
-      else{
-        // inside quotation mark
-        is_quote = *user_input;
-        user_input++;
-        continue;
       }
 
       if(token_idx + 1 >= token_size){

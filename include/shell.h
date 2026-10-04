@@ -16,7 +16,7 @@
 #define CWD 1024
 
 // parser.c
-char **parse_line(char *charline);
+char **parse_line(char *string);
 
 // processes.c
 void exec_commands(char **tokens);
