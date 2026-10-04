@@ -109,9 +109,7 @@ char **parse_line(char *string){
       token_holder = temp_holder;
     }
 
-    token_holder[token_count] = token;
-    printf("token: %s\n", token_holder[token_count]);
-    token_count++;
+    token_holder[token_count++] = token;
   }
 
   token_holder[token_count] = NULL;
