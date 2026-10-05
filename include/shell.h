@@ -17,7 +17,8 @@
 
 // utils.c
 void print_shell_intro(void);
-void free_all(char *token, char **token_arr);
+void free_all(char **token_arr);
+void clear_newline(char *str, size_t len);
 
 // parser.c
 char **parse_line(char *string);
@@ -26,6 +27,6 @@ char **parse_line(char *string);
 void exec_commands(char **tokens);
 
 // commands.c
-bool exec_builtin(char **tokens);
+int exec_builtin(char **tokens);
 
 #endif
