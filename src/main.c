@@ -19,10 +19,11 @@ int main(void){
 
     chars_read = getline(&line, &buffer_size, stdin);
 
+    clear_newline(line, strlen(line));
+
     if(chars_read == 1 /* empty input */){
       free(line);
       line = NULL;
-      buffer_size = 0;
       continue;
     }
 
@@ -36,20 +37,17 @@ int main(void){
 
     // check if input is whitespace
     if(words == NULL || words[0] == NULL){
-      free_all(line, words);
-      buffer_size = 0;
+      free_all(words);
       continue;
     }
 
-    if(exec_builtin(words)){
-      free_all(line, words);
-      buffer_size = 0;
+    if(exec_builtin(words) == 1){
+      free_all(words);
       continue;
     }
 
     exec_commands(words);
-    free_all(line, words);
-    buffer_size = 0;
+    free_all(words);
   }
   free(line);
   line = NULL;
