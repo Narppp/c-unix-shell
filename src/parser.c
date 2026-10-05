@@ -67,15 +67,11 @@ char **parse_line(char *string){
             user_input++;
           }
 
-          if(*user_input == '\0'){
-            fprintf(stderr, "Found unfinished quotation mark: %s\n", strerror(errno));
-            free(token);
-            free(token_holder);
-            return NULL;
+          if(*user_input == '\0'){ 
+            continue;
           }
 
           user_input++;
-          continue;
         }
       }
 
